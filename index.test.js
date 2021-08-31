@@ -9,5 +9,18 @@ async function run (input, output, opts = { }) {
 }
 
 it('does something', async () => {
-  await run('a{ }', 'a{ }', { })
+  const inputCSS = `
+  a {
+    color: var(--color, #ffffff);
+  }
+  `;
+
+  const expectedOuput = `
+  a {
+    color: #ffffff;
+    color: var(--color, #ffffff);
+  }
+  `;
+
+  await run(inputCSS, expectedOuput, { })
 })

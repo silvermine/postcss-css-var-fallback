@@ -6,25 +6,22 @@ module.exports = (opts = { }) => {
 
   return {
     postcssPlugin: 'postcss-var-fallback',
-    /*
-    Root (root, postcss) {
-      // Transform CSS AST here
-    }
-    */
 
-    /*
-    Declaration (decl, postcss) {
-      // The faster way to find Declaration node
-    }
-    */
+    // Root (root) {
+    //   // Transform CSS AST here
+    //   console.log('Whats in root?', root);
+    // },
 
-    /*
-    Declaration: {
-      color: (decl, postcss) {
-        // The fastest way find Declaration node if you know property name
+    Rule (decl) {
+      const getCSSVarValue = decl.nodes.find(node => {
+        return node.value.match(/var\(/i)
+      });
+
+      if (getCSSVarValue) {
+        console.log('Matching in rule?', getCSSVarValue);
       }
-    }
-    */
+
+    },
   }
 }
 module.exports.postcss = true
