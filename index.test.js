@@ -1,26 +1,31 @@
-const postcss = require('postcss')
+// Disabling this jest eslint rule since our expects are wrapped up
+// in the `run()` function.
+/* eslint-disable jest/expect-expect */
+'use strict';
 
-const plugin = require('./')
+const postcss = require('postcss');
 
-async function run (input, output, opts = { }) {
-  let result = await postcss([plugin(opts)]).process(input, { from: undefined })
-  expect(result.css).toEqual(output)
-  expect(result.warnings()).toHaveLength(0)
+const plugin = require('./');
+
+async function run(input, output, opts = {}) {
+   let result = await postcss([ plugin(opts) ]).process(input, { from: undefined });
+
+   expect(result.css).toEqual(output);
+   expect(result.warnings()).toHaveLength(0);
 }
 
 it('does something', async () => {
-  const inputCSS = `
-  a {
-    color: var(--color, #ffffff);
-  }
-  `;
-
-  const expectedOuput = `
+   const inputCSS = `
   a {
     color: #ffffff;
-    color: var(--color, #ffffff);
   }
   `;
 
-  await run(inputCSS, expectedOuput, { })
-})
+   const expectedOuput = `
+  a {
+    color: #ffffff;
+  }
+  `;
+
+   await run(inputCSS, expectedOuput, {});
+});
