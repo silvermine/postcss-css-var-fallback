@@ -1,5 +1,5 @@
 {
-  "name": "postcss-var-fallback",
+  "name": "@silvermine/postcss-css-var-fallback",
   "version": "0.0.0",
   "description": "PostCSS plugin to insert fallbacks for CSS vars",
   "keywords": [
@@ -17,7 +17,7 @@
   },
   "author": "Kevin Muncie <nivek2002@gmail.com>",
   "license": "MIT",
-  "repository": "@silvermine/postcss-var-fallback",
+  "repository": "@silvermine/postcss-css-var-fallback",
   "peerDependencies": {
     "postcss": "^8.2.8"
   },
