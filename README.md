@@ -1,5 +1,9 @@
 # PostCSS Var Fallback
 
+> NOTE: THIS IS NOT YET WORKING
+
+In case you've run across this and want to use it, it won't work yet.
+
 [![NPM Version](https://img.shields.io/npm/v/@silvermine/postcss-css-var-fallback.svg)](https://www.npmjs.com/package/@silvermine/postcss-css-var-fallback)
 [![License](https://img.shields.io/github/license/silvermine/postcss-css-var-fallback.svg)](./LICENSE)
 [![Build Status](https://travis-ci.com/silvermine/postcss-css-var-fallback.svg?branch=main)](https://travis-ci.com/silvermine/postcss-css-var-fallback)
