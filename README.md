@@ -1,9 +1,5 @@
 # PostCSS CSS Var Fallback
 
-> NOTE: THIS IS NOT YET WORKING
-
-In case you've run across this and want to use it, it won't work yet.
-
 [![NPM Version](https://img.shields.io/npm/v/@silvermine/postcss-css-var-fallback.svg)](https://www.npmjs.com/package/@silvermine/postcss-css-var-fallback)
 [![License](https://img.shields.io/github/license/silvermine/postcss-css-var-fallback.svg)](./LICENSE)
 [![Build Status](https://travis-ci.com/silvermine/postcss-css-var-fallback.svg?branch=main)](https://travis-ci.com/silvermine/postcss-css-var-fallback)
@@ -18,13 +14,16 @@ In case you've run across this and want to use it, it won't work yet.
 
 ```css
 .foo {
-    /* Input example */
+   /* Input example */
+   color: var(--color, #4a6da7);
 }
 ```
 
 ```css
 .foo {
-  /* Output example */
+   /* Output example */
+   color: #4a6da7;
+   color: var(--color, #4a6da7);
 }
 ```
 
