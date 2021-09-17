@@ -6,7 +6,7 @@
     "postcss",
     "css",
     "postcss-plugin",
-    "caa variables"
+    "css variables"
   ],
   "scripts": {
     "test": "check-node-version --npm 6.14.12 && jest --coverage",

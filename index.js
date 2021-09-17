@@ -3,7 +3,7 @@
 module.exports = () => {
 
    return {
-      postcssPlugin: 'postcss-var-fallback',
+      postcssPlugin: 'postcss-css-var-fallback',
    };
 };
 
