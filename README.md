@@ -1,8 +1,4 @@
-# PostCSS Var Fallback
-
-> NOTE: THIS IS NOT YET WORKING
-
-In case you've run across this and want to use it, it won't work yet.
+# PostCSS CSS Var Fallback
 
 [![NPM Version](https://img.shields.io/npm/v/@silvermine/postcss-css-var-fallback.svg)](https://www.npmjs.com/package/@silvermine/postcss-css-var-fallback)
 [![License](https://img.shields.io/github/license/silvermine/postcss-css-var-fallback.svg)](./LICENSE)
@@ -18,13 +14,16 @@ In case you've run across this and want to use it, it won't work yet.
 
 ```css
 .foo {
-    /* Input example */
+   /* Input example */
+   color: var(--color, #4a6da7);
 }
 ```
 
 ```css
 .foo {
-  /* Output example */
+   /* Output example */
+   color: #4a6da7;
+   color: var(--color, #4a6da7);
 }
 ```
 
@@ -33,7 +32,7 @@ In case you've run across this and want to use it, it won't work yet.
 **Step 1:** Install plugin:
 
 ```sh
-npm install --save-dev postcss postcss-var-fallback
+npm install --save-dev postcss postcss-css-var-fallback
 ```
 
 **Step 2:** Check you project for existed PostCSS config: `postcss.config.js`
@@ -48,7 +47,7 @@ and set this plugin in settings.
 ```diff
 module.exports = {
   plugins: [
-+   require('postcss-var-fallback'),
++   require('postcss-css-var-fallback'),
     require('autoprefixer')
   ]
 }

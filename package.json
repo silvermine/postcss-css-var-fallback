@@ -6,7 +6,7 @@
     "postcss",
     "css",
     "postcss-plugin",
-    "caa variables"
+    "css variables"
   ],
   "scripts": {
     "test": "check-node-version --npm 6.14.12 && jest --coverage",
@@ -15,7 +15,7 @@
     "markdownlint": "markdownlint \"README.md\"",
     "standards": "npm run lint && npm run markdownlint"
   },
-  "author": "Kevin Muncie <nivek2002@gmail.com>",
+  "author": "Kevin Muncie <kevin@kmuncie.com>",
   "license": "MIT",
   "repository": "@silvermine/postcss-css-var-fallback",
   "peerDependencies": {
