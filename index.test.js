@@ -165,3 +165,25 @@ it('Inserts no fallback', async () => {
 
    await run(inputCSS, expectedOuput, {});
 });
+
+it('Skips when fallback already exists above the var line.', async () => {
+   const inputCSS = `
+   a {
+      color: #090;
+      color: var(--color, #090);
+   }
+   `;
+
+   await run(inputCSS, inputCSS, {});
+});
+
+it('Skips when fallback already exists below the var line.', async () => {
+   const inputCSS = `
+   a {
+      color: var(--color, #090);
+      color: #090;
+   }
+   `;
+
+   await run(inputCSS, inputCSS, {});
+});
