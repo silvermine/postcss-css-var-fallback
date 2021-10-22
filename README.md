@@ -47,7 +47,7 @@ and set this plugin in settings.
 ```diff
 module.exports = {
   plugins: [
-+   require('postcss-css-var-fallback'),
++   require('@silvermine/postcss-css-var-fallback'),
     require('autoprefixer')
   ]
 }
