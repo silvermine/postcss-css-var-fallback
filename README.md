@@ -32,7 +32,7 @@
 **Step 1:** Install plugin:
 
 ```sh
-npm install --save-dev postcss postcss-css-var-fallback
+npm install --save-dev postcss @silvermine/postcss-css-var-fallback
 ```
 
 **Step 2:** Check you project for existed PostCSS config: `postcss.config.js`
