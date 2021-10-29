@@ -32,7 +32,7 @@
 **Step 1:** Install plugin:
 
 ```sh
-npm install --save-dev postcss postcss-css-var-fallback
+npm install --save-dev postcss @silvermine/postcss-css-var-fallback
 ```
 
 **Step 2:** Check you project for existed PostCSS config: `postcss.config.js`
@@ -47,7 +47,7 @@ and set this plugin in settings.
 ```diff
 module.exports = {
   plugins: [
-+   require('postcss-css-var-fallback'),
++   require('@silvermine/postcss-css-var-fallback'),
     require('autoprefixer')
   ]
 }
