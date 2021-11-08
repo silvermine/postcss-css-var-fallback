@@ -48,6 +48,22 @@ it('Inserts hex fallback', async () => {
    await run(inputCSS, expectedOuput, {});
 });
 
+it('Inserts hex fallback with !important', async () => {
+   const inputCSS = `
+   a {
+      color: var(--color, #ffffff) !important;
+   }
+   `;
+
+   const expectedOuput = `
+   a {
+      color: #ffffff !important;
+      color: var(--color, #ffffff) !important;
+   }
+   `;
+
+   await run(inputCSS, expectedOuput, {});
+});
 it('Inserts complex hex fallback', async () => {
    const inputCSS = `
    a {
@@ -150,6 +166,23 @@ it('Inserts hsl fallback', async () => {
    await run(inputCSS, expectedOuput, {});
 });
 
+it('Inserts linear-gradient fallback ', async () => {
+   const inputCSS = `
+      .test {
+         background-image: linear-gradient(to left, var(--color1, #4a6da7) 0%, var(--color2, #474747) 100%);
+      }
+   `;
+
+   const expectedOuput = `
+      .test {
+         background-image: linear-gradient(to left, #4a6da7 0%, #474747 100%);
+         background-image: linear-gradient(to left, var(--color1, #4a6da7) 0%, var(--color2, #474747) 100%);
+      }
+   `;
+
+   await run(inputCSS, expectedOuput, {});
+});
+
 it('Inserts no fallback', async () => {
    const inputCSS = `
       .test {
@@ -187,3 +220,37 @@ it('Skips when fallback already exists below the var line.', async () => {
 
    await run(inputCSS, inputCSS, {});
 });
+
+it('Skips existing hex color', async () => {
+   const inputCSS = `
+   a {
+      color: #4a6da7;
+      color: var(--color, #4a6da7);
+   }
+   `;
+
+   await run(inputCSS, inputCSS, {});
+});
+
+it('Skips existing rgba() fallback', async () => {
+   const inputCSS = `
+   a {
+      color: rgba(12, 12, 12, 0.5);
+      color: var(--color, rgba(12, 12, 12, 0.5));
+   }
+   `;
+
+   await run(inputCSS, inputCSS, {});
+});
+
+it('Skips existing hsla fallback', async () => {
+   const inputCSS = `
+      .test {
+         color: hsla(30, 100%, 50%, 0.6);
+         color: var(--color, hsla(30, 100%, 50%, 0.6));
+      }
+   `;
+
+   await run(inputCSS, inputCSS, {});
+});
+
