@@ -53,4 +53,26 @@ module.exports = {
 }
 ```
 
+## Limitations
+
+Be aware that this plugin does not add a fallback for declarations with `var` statements
+when there is more than one declaration for a given CSS property in a single rule.
+
+For example, this plugin will not add a fallback for the `var` statement in this case:
+
+```css
+.example {
+   color: red;
+   color: var(--textColor, #333);
+}
+```
+
+The plugin assumes that the previous `color: red` declaration is a fallback. This prevents
+the plugin from having to parse the `var(--textColor, #333)` statement and compare the
+fallback there with any other `color:` declaration values. We found that such a check
+impacted performance enough that it was not worth the cost.
+
+To avoid incorrect or missing fallbacks, ensure that the CSS that you write does not have
+extraneous/duplicate declarations for the same CSS property.
+
 [official docs]: https://github.com/postcss/postcss#usage
