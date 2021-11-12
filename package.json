@@ -9,7 +9,7 @@
     "css variables"
   ],
   "scripts": {
-    "test": "check-node-version --npm 6.14.12 && jest --coverage",
+    "test": "check-node-version --npm 6.14.12 && jest --coverage --coverageThreshold '{}'",
     "lint": "eslint .",
     "commitlint": "commitlint --from 62edc48",
     "markdownlint": "markdownlint \"README.md\"",
