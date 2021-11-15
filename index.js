@@ -1,7 +1,7 @@
 'use strict';
 
-// Capture everything within var() https://regex101.com/r/7UYMv8/1
-const INSIDE_PAREN_REGEX = /var\(([^()]*\([^)]*\)|[^)]*)\)/g;
+// Capture the fallback value within var() statements https://regex101.com/r/XPqn0X/1
+const FALLBACK_VALUE_REGEX = /var\(\s*--[\w-]+\s*,([^)]*\)|[^)]*)\s*\)/g;
 
 function shouldAddFallback(decl) {
    // `str.includes` is 3-5% faster than using RegEx matching for this expression
@@ -29,22 +29,22 @@ function shouldAddFallback(decl) {
    return siblings.length === 1;
 }
 
-function getCSSVarFallbackValue(cssDeclValue) {
-   let fallbackValue = cssDeclValue;
+function getFallbackValue(cssDeclValue) {
+   let cssDeclFallbackValue = cssDeclValue;
 
    // Here's an example string value for `cssDeclValue` to use when thinking about what
    // this function does:
    //
    // `linear-gradient(to left, var(--color1, #4a6da7) 0%, var(--color2, #474747) 100%)`
-   //
-   const cssVarParams = Array.from(cssDeclValue.matchAll(INSIDE_PAREN_REGEX));
+
+   const fallbackValues = Array.from(cssDeclValue.matchAll(FALLBACK_VALUE_REGEX));
 
    /* eslint-disable max-len */
-   // cssVarParams is an array of RegEx matches:
+   // fallbackValues is an array of RegEx matches:
    // [
    //    [
    //       'var(--color1, #4a6da7)',
-   //       '--color1, #4a6da7',
+   //       '#4a6da7',
    //       index: 43,
    //       input: 'linear-gradient(to left, var(--color1, #4a6da7) 0%, var(--color2, #474747) 100%)',
    //       groups: undefined
@@ -52,41 +52,27 @@ function getCSSVarFallbackValue(cssDeclValue) {
    //    ...
    // ]
    /* eslint-enable max-len */
-   if (cssVarParams.length === 0) {
+   if (fallbackValues.length === 0) {
       return undefined;
    }
 
-   for (const varParamMatch of cssVarParams) {
-      const rawFallbackValue = varParamMatch[1].match(/,(.*$)/);
-      // varParamMatch[1] = '--color1, #4a6da7' for example. So, rawFallbackValue is:
-      // [
-      //    ', #4a6da7',
-      //    ' #4a6da7',
-      //    index: 8,
-      //    input: '--color1, #4a6da7',
-      //    groups: undefined
-      // ]
-
-      if (rawFallbackValue !== null) {
-         /* eslint-disable max-len */
-         // If the CSS var statement has a fallback value, replace the var statement
-         // with the fallback value. For example, this operation turns:
-         //
-         // linear-gradient(to left, var(--color1, #4a6da7) 0%, var(--color2, #474747) 100%)
-         //
-         // into:
-         //
-         // linear-gradient(to left, #4a6da7 0%, var(--color2, #474747) 100%)
-         /* eslint-disable max-len */
-         fallbackValue = fallbackValue.replace(varParamMatch[0], rawFallbackValue[1].trim());
-      }
+   for (const fallbackValueMatch of fallbackValues) {
+      // Replace the var statement with the fallback value. For example, this operation
+      // turns:
+      //
+      // linear-gradient(to left, var(--color1, #4a6da7) 0%, var(--color2, #474747) 100%)
+      //
+      // into:
+      //
+      // linear-gradient(to left, #4a6da7 0%, var(--color2, #474747) 100%)
+      cssDeclFallbackValue = cssDeclFallbackValue.replace(fallbackValueMatch[0], fallbackValueMatch[1].trim());
    }
 
-   if (fallbackValue === cssDeclValue) {
+   if (cssDeclFallbackValue === cssDeclValue) {
       return undefined;
    }
 
-   return fallbackValue;
+   return cssDeclFallbackValue;
 }
 
 module.exports = () => {
@@ -100,10 +86,10 @@ module.exports = () => {
                return;
             }
 
-            const cssVarFallbackValue = getCSSVarFallbackValue(decl.value);
+            const fallbackValue = getFallbackValue(decl.value);
 
-            if (cssVarFallbackValue) {
-               const cssFallbackRule = { prop: decl.prop, value: cssVarFallbackValue };
+            if (fallbackValue) {
+               const cssFallbackRule = { prop: decl.prop, value: fallbackValue };
 
                decl.cloneBefore(cssFallbackRule);
             }
