@@ -184,6 +184,44 @@ it('Inserts linear-gradient fallback', async () => {
    await run(inputCSS, expectedOuput, {});
 });
 
+it('Handles multi-line values inside of `var` statements', async () => {
+   const inputCSS = `
+   .test {
+      background-image: linear-gradient(
+         to left,
+         var(
+            --color1,
+            rgba(255, 255, 255, 0)
+         )
+         0%,
+         var(--color2, white) 100%
+      );
+   }
+   `;
+
+   const expectedOuput = `
+   .test {
+      background-image: linear-gradient(
+         to left,
+         rgba(255, 255, 255, 0)
+         0%,
+         white 100%
+      );
+      background-image: linear-gradient(
+         to left,
+         var(
+            --color1,
+            rgba(255, 255, 255, 0)
+         )
+         0%,
+         var(--color2, white) 100%
+      );
+   }
+   `;
+
+   await run(inputCSS, expectedOuput, {});
+});
+
 it('Inserts no fallback', async () => {
    const inputCSS = `
       .test {
