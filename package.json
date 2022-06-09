@@ -9,7 +9,7 @@
     "css variables"
   ],
   "scripts": {
-    "test": "check-node-version --npm 6.14.12 && jest --coverage --coverageThreshold '{}'",
+    "test": "check-node-version --npm 8.5.5 && jest --coverage --coverageThreshold '{}'",
     "lint": "eslint .",
     "commitlint": "commitlint --from 62edc48",
     "markdownlint": "markdownlint \"README.md\"",
@@ -19,11 +19,11 @@
   "license": "MIT",
   "repository": "@silvermine/postcss-css-var-fallback",
   "peerDependencies": {
-    "postcss": "^8.2.8"
+    "postcss": "^8.4.14"
   },
   "devDependencies": {
     "@silvermine/eslint-config": "3.0.1",
-    "@silvermine/standardization": "1.2.0",
+    "@silvermine/standardization": "2.0.0",
     "coveralls": "3.1.1",
     "eslint": "6.8.0",
     "eslint-plugin-jest": "24.2.1",
@@ -38,6 +38,6 @@
     }
   },
   "dependencies": {
-    "postcss": "8.2.8"
+    "postcss": "8.4.14"
   }
 }
