@@ -1,12 +1,10 @@
 # PostCSS CSS Var Fallback
 
-[![NPM Version](https://img.shields.io/npm/v/@silvermine/postcss-css-var-fallback.svg)](https://www.npmjs.com/package/@silvermine/postcss-css-var-fallback)
-[![License](https://img.shields.io/github/license/silvermine/postcss-css-var-fallback.svg)](./LICENSE)
-[![Build Status](https://travis-ci.com/silvermine/postcss-css-var-fallback.svg?branch=main)](https://travis-ci.com/silvermine/postcss-css-var-fallback)
-[![Coverage Status](https://api.travis-ci.com/silvermine/postcss-css-var-fallback.svg?branch=main)](https://coveralls.io/github/silvermine/postcss-css-var-fallback?branch=main)
-[![Dependency Status](https://david-dm.org/silvermine/postcss-css-var-fallback.svg)](https://david-dm.org/silvermine/postcss-css-var-fallback)
-[![Dev Dependency Status](https://david-dm.org/silvermine/postcss-css-var-fallback/dev-status.svg)](https://david-dm.org/silvermine/postcss-css-var-fallback#info=devDependencies&view=table)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![NPM Version][npm-version]][npm-version-url]
+[![License][license-badge]](./LICENSE)
+[![Build Status][build-status]][build-status-url]
+[![Coverage Status][coverage-status]][coverage-status-url]
+![Conventional Commits][conventional-commits-url]
 
 [PostCSS] plugin to insert fallbacks for CSS vars.
 
@@ -76,3 +74,11 @@ To avoid incorrect or missing fallbacks, ensure that the CSS that you write does
 extraneous/duplicate declarations for the same CSS property.
 
 [official docs]: https://github.com/postcss/postcss#usage
+[npm-version]: https://img.shields.io/npm/v/@silvermine/postcss-css-var-fallback.svg
+[npm-version-url]: https://www.npmjs.com/package/@silvermine/postcss-css-var-fallback
+[license-badge]: https://img.shields.io/github/license/silvermine/postcss-css-var-fallback.svg
+[build-status]: https://github.com/silvermine/postcss-css-var-fallback/actions/workflows/ci.yml/badge.svg
+[build-status-url]: https://travis-ci.org/silvermine/postcss-css-var-fallback.svg?branch=master
+[coverage-status]: https://coveralls.io/repos/github/silvermine/postcss-css-var-fallback/badge.svg?branch=master
+[coverage-status-url]: https://coveralls.io/github/silvermine/postcss-css-var-fallback?branch=master
+[conventional-commits-url]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
