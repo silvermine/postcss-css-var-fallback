@@ -9,11 +9,12 @@
     "css variables"
   ],
   "scripts": {
-    "test": "check-node-version --npm 8.5.5 && jest --coverage --coverageThreshold '{}'",
+    "check-node-version": "check-node-version --node $(cat .nvmrc) --npm 10.5.0 --print",
+    "test": "jest --coverage --coverageThreshold '{}'",
     "lint": "eslint .",
     "commitlint": "commitlint --from 62edc48",
     "markdownlint": "markdownlint \"README.md\"",
-    "standards": "npm run lint && npm run markdownlint"
+    "standards": "npm run lint && npm run markdownlint && npm run commitlint"
   },
   "author": "Kevin Muncie <kevin@kmuncie.com>",
   "license": "MIT",
