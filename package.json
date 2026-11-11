@@ -9,7 +9,7 @@
     "css variables"
   ],
   "scripts": {
-    "check-node-version": "check-node-version --node $(cat .nvmrc) --npm 10.5.0 --print",
+    "check-node-version": "check-node-version --node $(cat .nvmrc) --npm 11.19.1 --print",
     "test": "jest --coverage --coverageThreshold '{}'",
     "lint": "eslint .",
     "commitlint": "commitlint --from 62edc48",
